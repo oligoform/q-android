@@ -49,10 +49,10 @@ define([
 	/**
 	 * Opens the given image (or list of images) with PhotoSwipe
 	 */
-	function open_with_photoswipe( $images, index ) {
+	function open_with_photoswipe( $images, index, is_flickr ) {
 		
 		index = index || 0;
-
+		
 		var photoswipe_items = [];
 		
 		//For each image, create the corresponding PhotoSwipe item by retrieving
@@ -60,15 +60,31 @@ define([
 		$images.each( function() {
 			var $image = $( this );
 			
-			//Retrieve image caption if any:
-			var $caption = $( this ).closest('.gallery-item,.wp-caption').find( '.wp-caption-text' );
+			var caption = '';
+			var full_img = '';
+			var width = '';
+			var height = '';
 			
+			if ( !is_flickr ) {
+				//Retrieve image caption if any:
+				var $caption = $( this ).closest('.gallery-item,.wp-caption').find( '.wp-caption-text' );
+				caption = $caption.length ? $caption.text() : '';
+				full_img = $image.data( 'full-img' );
+				width = $image.data( 'width' );
+				height = $image.data( 'height' );
+			} else {
+				full_img = $image.closest( 'a.jg-entry' ).attr('href');
+				//Unfortunately we can't know the real image size from flickr gallery's HTML :(
+				//So we set something arbitrarily:
+				width = 715; 
+				height = 536;
+			}
 			//Add PhotoSwipe item corresponding to
 			photoswipe_items.push({
-				src: $image.data( 'full-img' ),
-				w: $image.data( 'width' ),
-				h: $image.data( 'height' ),
-				title: $caption.length ? $caption.text() : ''
+				src: full_img,
+				w: width,
+				h: height,
+				title: caption
 			});
 		} );
 
@@ -94,9 +110,15 @@ define([
 		//Detect if the image belongs to a gallery
 		var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
 
+		var is_flickr_gallery = $( this ).closest( 'a' ).hasClass('jg-entry');
+
 		if ( is_gallery ) {
 			//Open PhotoSwipe for all images of the gallery:
 			open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
+	
+		} else if ( is_flickr_gallery ) {
+			//Open PhotoSwipe for Flickr Gallery
+			open_with_photoswipe( $( this ).closest( '.jg-entry' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.jg-entry' ).index(), true );
 		} else {
 			//Open PhotoSwipe for the image we just touched:
 			open_with_photoswipe( $( this ) );

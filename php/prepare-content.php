@@ -29,8 +29,11 @@ function wpak_prepare_content($content,$post){
     $imgCollection1 = $xpath->query("//a/img");
     
     foreach($imgCollection1 as $img) {
-        $img->parentNode->removeAttribute('href');
-        $img->parentNode->setAttribute('class','content-image-link');
+		$imgParentClass = $img->parentNode->getAttribute('class');
+		if ( $imgParentClass !== 'jg-entry' ) {
+			$img->parentNode->removeAttribute('href');
+		}
+        $img->parentNode->setAttribute('class', $imgParentClass .' content-image-link');
     }
 
     // Get all images in the post content
