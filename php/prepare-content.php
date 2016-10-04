@@ -31,7 +31,7 @@ function wpak_prepare_content($content,$post){
     foreach($imgCollection1 as $img) {
 		$imgParentClass = $img->parentNode->getAttribute('class');
 		if ( $imgParentClass !== 'jg-entry' ) {
-			$img->parentNode->removeAttribute('href');
+			//$img->parentNode->removeAttribute('href');
 		}
         $img->parentNode->setAttribute('class', $imgParentClass .' content-image-link');
     }

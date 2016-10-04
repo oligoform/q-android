@@ -73,13 +73,13 @@ define([
 				width = $image.data( 'width' );
 				height = $image.data( 'height' );
 			} else {
-				full_img = $image.closest( 'a.jg-entry' ).attr('href');
+				full_img = $image.closest( 'a' ).attr('href');
 				//Unfortunately we can't know the real image size from flickr gallery's HTML :(
 				//So we set something arbitrarily:
 				width = 715; 
 				height = 536;
 			}
-			//Add PhotoSwipe item corresponding to
+			//Add PhotoSwipe item:
 			photoswipe_items.push({
 				src: full_img,
 				w: width,
@@ -109,8 +109,9 @@ define([
 
 		//Detect if the image belongs to a gallery
 		var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
-
-		var is_flickr_gallery = $( this ).closest( 'a' ).hasClass('jg-entry');
+		
+		var a_rel = $( this ).closest( 'a' ).attr('rel');
+		var is_flickr_gallery = a_rel && a_rel.indexOf('flickr') !== -1;
 
 		if ( is_gallery ) {
 			//Open PhotoSwipe for all images of the gallery:
@@ -118,7 +119,7 @@ define([
 	
 		} else if ( is_flickr_gallery ) {
 			//Open PhotoSwipe for Flickr Gallery
-			open_with_photoswipe( $( this ).closest( '.jg-entry' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.jg-entry' ).index(), true );
+			open_with_photoswipe( $( this ).closest( 'a' ).siblings().andSelf().find( 'img' ), $( this ).closest( 'a' ).index(), true );
 		} else {
 			//Open PhotoSwipe for the image we just touched:
 			open_with_photoswipe( $( this ) );
