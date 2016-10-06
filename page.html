@@ -19,7 +19,7 @@
         <h1>
             <%= post.title %>
         </h1>
-
+        
 <!--
         <div class="post-meta">
             By <span class="post-author"><%= post.author %></span><span class="post-publish-date"><%= getCustomDate(post.date) %></span>
@@ -40,6 +40,19 @@
             
     <div id="single-content" class="single-content">
 
+            <!-- TEST FORM -->
+            <h2>My test form:</h2>
+            <form id="my-form">
+                <label>Name</label><br>
+                <input type="text" name="name"><br>
+                <label>Email</label><br>
+                <input type="text" name="email"><br>
+                <input type="submit">
+            </form>
+            <div id="my-form-feedback"></div>
+            <!-- /TEST FORM -->
+        
+            <h2>Page content:</h2>
             <%= post.content %>
 
 	</div>

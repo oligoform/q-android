@@ -1,5 +1,5 @@
 <!--
-Theme Name: Q for Android
+Theme Name: Q for Android - Simple Form Demo
 Description:  A clean and simple Android app news theme featuring: back button, comments, content refresh, custom post types, embeds, infinite list, latest posts, native sharing, network detection, off-canvas menu, offline content, pages, posts, pull to refresh, responsive, status bar, touch, transitions
 Version: 1.0.2
 Theme URI: https://github.com/uncatcrea/q-android
@@ -10,6 +10,13 @@ License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Copyright: 2016 Uncategorized Creations	
 -->
+
+# Q for Android - Simple Form Demo
+
+This is an example of how to handle a simple form submission in an app.
+For this example the form's HTML is inserted in the _page.html_ template, so the form will display in every *page* inserted in the app (and not in posts).
+Javascript part is defined in _js/my_form.js_.
+PHP part is defined in _php/handle-my-form.php_.
 
 **Q for Android** is a demo theme for mobile apps built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
 

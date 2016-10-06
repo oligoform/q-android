@@ -24,10 +24,10 @@ define([
     'root/config',
     'theme/js/moment.min',
     'theme/js/velocity.min',
-    'theme/js/jquery.fitvids'
+    'theme/js/jquery.fitvids',
+	'theme/js/my_form' //Include our my_form.js file to handle form submission
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
-    
     
     /*
      * App's parameters

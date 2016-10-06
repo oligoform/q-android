@@ -577,3 +577,18 @@ a {
         transform: scale(2.5);
     }
 }
+
+#my-form input{     
+    width: 100%;
+    margin: 7px 0 20px;
+    border: 1px solid #777;
+    font-size: 1.5em;
+    padding: 6px;
+}
+
+#my-form-feedback {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2em;
+}
