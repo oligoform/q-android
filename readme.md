@@ -13,10 +13,15 @@ Copyright: 2016 Uncategorized Creations
 
 # Q for Android - Simple Form Demo
 
-This is an example of how to handle a simple form submission in an app.
-For this example the form's HTML is inserted in the _page.html_ template, so the form will display in every *page* inserted in the app (and not in posts).
+This is an example of how to handle a **simple form submission** in an app.
+
+For this example the form's HTML is inserted in the _page.html_ template, so the form will display in every **page** inserted in the app (and not in posts).
+
 Javascript part is defined in _js/my_form.js_.
+
 PHP part is defined in _php/handle-my-form.php_.
+
+## Q for Android
 
 **Q for Android** is a demo theme for mobile apps built with WP-AppKit, a WordPress plugin to create mobile apps connected to WordPress (more on that at http://getwpappkit.com).
 
