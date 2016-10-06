@@ -21,14 +21,14 @@ function handle_my_form( $service_answer, $query_params ) {
 		$service_answer[ 'my_form_result' ] = array( 'ok' => 0, 'message' => '', 'data' => array() );
 
 		//Check that sent name is not empty:
-		$name = trim( $query_params[ 'name' ] );
+		$name = trim( $query_params[ 'my_name' ] );
 		if ( empty( $name ) ) {
 			$service_answer[ 'my_form_result' ][ 'message' ] = 'Please provide a name';
 			return $service_answer;
 		}
 
 		//Check that email is well formatted:
-		$email = trim( $query_params[ 'email' ] );
+		$email = trim( $query_params[ 'my_email' ] );
 		if ( !filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 			$service_answer[ 'my_form_result' ][ 'message' ] = 'Please provide a valid email';
 			return $service_answer;

@@ -17,8 +17,8 @@ define( [ 'jquery', 'core/theme-app' ], function ( $, App ) {
 		//using the 'wpak_live_query' hook:
 		var live_query_args = {
 			my_action: 'submit-my-form',
-			name: name,
-			email: email
+			my_name: name,
+			my_email: email
 		};
 
 		//Define live query options:
