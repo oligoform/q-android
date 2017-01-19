@@ -7,40 +7,39 @@
 <div id="content" class="content list-template">
     
 	<% if(posts.length){ %>
+        
+            <!-- start padding container -->
+                <div class="wrap">
+                    <!-- start jtinder container -->
+                    <div id="tinderslide">
+                        <ul>
+                            <% _.each( posts.reverse(), function( post ){ %>
+                            <li class="pane1">
+                                <div class="img">
+                                    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+                                        <img class="content-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
+                                    <% } %>
+                                </div>
+                                <div><%= post.title %></div>
+                                <div class="like"></div>
+                                <div class="dislike"></div>
+                            </li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                    <!-- end jtinder container -->
+                </div>
+                <!-- end padding container -->
 
-		<% _.each( posts, function( post ){ %>
+                <!-- jTinder trigger by buttons  -->
+                <div class="actions">
+                    <a href="#" class="dislike"><i></i></a>
+                    <a href="#" class="like"><i></i></a>
+                </div>
 
-			<div class="content-item has-ripple-feedback">
+                <!-- jTinder status text  -->
+                <div id="status"></div>
 
-                <a href="<%= TemplateTags.getPostLink(post.id) %>">
-
-                    <% if ( post.subhead ) { %>
-
-                        <div class="subhead"><%= post.subhead %></div>
-
-                    <% } %>
-
-					<h2><span><%= post.title %></span></h2>
-                        
-                    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
-
-                        <img class="content-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
-
-                    <% } %>	
-                    
-                        
-				</a>
-			</div>
-
-		<% }); %>
-
-        <% if( TemplateTags.displayGetMoreLink() ){ %>
-			<div class="get-more-button-wrapper">
-                <button type="button" id="get-more-button" class="get-more-button has-ripple-feedback ripple-small">More (<%= TemplateTags.getMoreLinkNbLeft() %>)</button>
-            
-            </div>
-		<% } %>
-            
 	<% }else{ %>
 		<div class='content-message'>No post found</div>
 	<% } %>

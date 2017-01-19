@@ -24,11 +24,55 @@ define([
     'root/config',
     'theme/js/moment.min',
     'theme/js/velocity.min',
-    'theme/js/jquery.fitvids'
+    'theme/js/jquery.fitvids',
+    'theme/js/jquery.transform2d',
+    'theme/js/jquery.jTinder',
+    'theme/js/main'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
-    
-    
+App.on( 'screen:showed', function( current_screen ) {
+
+	if ( current_screen.screen_type === "list" ) {
+
+		$( "#tinderslide" ).jTinder( {
+			// dislike callback
+			onDislike: function ( item ) {
+				// set the status text
+				console.log('yo dislike');
+				$( '#status' ).html( 'Dislike image ' + ( item.index() + 1 ) );
+			},
+			// like callback
+			onLike: function ( item ) {
+				console.log( 'yo Like' );
+				// set the status text
+				$( '#status' ).html( 'Like image ' + ( item.index() + 1 ) );
+			},
+			animationRevertSpeed: 200,
+			animationSpeed: 400,
+			threshold: 1,
+			likeSelector: '.like',
+			dislikeSelector: '.dislike'
+		} );
+
+		/**
+		 * Set button action to trigger jTinder like & dislike.
+		 */
+		$( '.actions .like, .actions .dislike' ).click( function ( e ) {
+			e.preventDefault();
+			console.log('CLICK LIKE/DISLIKE');
+			$( "#tinderslide" ).jTinder( $( this ).attr( 'class' ) );
+		} );
+	}
+
+});
+
+App.on( 'screen:leave', function( current_screen ) {
+	if ( current_screen.screen_type === 'list' ) {
+		$("#tinderslide").unbind();
+		$( '.actions .like, .actions .dislike' ).unbind();
+	}	
+} );
+	
     /*
      * App's parameters
      */
@@ -74,7 +118,7 @@ define([
     /*
      * Filters
      */
-    
+     
     // @desc Add template args
     App.filter( 'template-args', function( template_args, view_type, view_template ) {
         
