@@ -27,8 +27,6 @@ define([
     'theme/js/jquery.fitvids'
     ], function($,App,Storage,TemplateTags,Config,Moment,Velocity) {
 
-    
-    
     /*
      * App's parameters
      */
@@ -141,7 +139,7 @@ define([
 
         // Get the direction keyword from current screen and  previous screen
         var direction = App.getTransitionDirection( current_screen, next_screen );
-        
+        console.log(direction);
         switch ( direction ) {
             case 'next-screen': // Archive to single
                 transition_next_screen($wrapper, $current, $next, current_screen, next_screen, $deferred);

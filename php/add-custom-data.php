@@ -19,6 +19,8 @@ function wpak_add_custom_data( $post_data, $post, $component ) {
 		if ( $image_post ) {
 			if ( !empty( $post_data['thumbnail'] ) ) {
 				$post_data['thumbnail']['caption'] = $image_post->post_excerpt;
+				$thumb = wp_get_attachment_image_src( $thumbnail_id, 'thumbnail' );
+				$post_data['thumbnail']['thumb'] = $thumb[0];
 			}
 		}
 	}
@@ -28,4 +30,9 @@ function wpak_add_custom_data( $post_data, $post, $component ) {
 }
 
 add_filter( 'wpak_post_data', 'wpak_add_custom_data', 10, 3 );
-?>
+
+
+add_filter( 'wpak_excerpt_length', 'wpak_excerpt_length' );
+function wpak_excerpt_length( $excerpt_length ) {
+	return 10;
+}
